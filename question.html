@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فلانتين؟ ❤️</title>
+    <style>
+        body {
+            text-align: center;
+            background: url('img/backlit-chiemsee-dawn-desktop-backgrounds.jpg') no-repeat center center fixed;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+        }
+        .header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .header div {
+            margin: 0 20px;
+            text-align: center;
+        }
+        .header img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 3px solid white;
+            transition: .5s;
+        }
+
+        .header img:hover{
+            transform: scale(1.1) translateY(-10px);
+
+        }
+        .content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .couple-img {
+            width: 150px;
+            border-radius: 15px;
+            border: 3px solid white;
+            transition: .5s;
+
+        }
+
+        .couple-img:hover{
+            transform: scale(1.2) translateY(-10px);
+
+        }
+
+        h1 {
+            color: white;
+            font-size: 2.5rem;
+        }
+        .buttons {
+            margin-top: 30px;
+        }
+        button {
+            font-size: 1.5rem;
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+        .yes {
+            background-color: red;
+            color: white;
+        }
+        .no {
+            background-color: white;
+            color: black;
+            position: absolute;
+        }
+        .message {
+            font-size: 1.2rem;
+            color: white;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div>
+            <img src="img/photo_2025-02-03_22-53-48.jpg" alt="Jana">
+            <p>إلى جنجونتي</p>
+        </div>
+
+        <div>
+            <img src="img/photo_2025-02-03_22-53-23.jpg" alt="Ahmed">
+            <p>من أحمد إيهاب</p>
+        </div>
+    </div>
+
+    <div class="content">
+        <img class="couple-img" src="img/photo_2025-02-03_22-53-36.jpg" alt="Ahmed & Jana">
+
+        <h1>ممكن تبقي الفلانتين بتاعي؟ ❤️</h1>
+    </div>
+
+    <div class="buttons">
+        <button class="yes" onclick="yesAnswer()">نعم</button>
+        <button class="no" onmouseover="moveButton()">لا</button>
+    </div>
+
+    <p id="noMessage" class="message"></p>
+
+    <script>
+        function yesAnswer() {
+            window.location.href = "love-message.html";
+        }
+
+        function moveButton() {
+            const button = document.querySelector('.no');
+            const message = document.getElementById("noMessage");
+            const messages = [
+                "مفيش لا، فكري تاني! 🤨",
+                " يارب صبرني يابنتي مفيش لا",
+                "اعتبري الزرار دا مش موجود",
+                "بطلي رخامة وقولي نعم 😡",
+                "(نعم) خدي وقتك، بس الإجابة معروفة ",
+                "ياجنه🤨",
+                "please",
+                "هضربكككك يابت"
+
+
+            ];
+            message.innerText = messages[Math.floor(Math.random() * messages.length)];
+            button.style.top = Math.random() * window.innerHeight + 'px';
+            button.style.left = Math.random() * window.innerWidth + 'px';
+        }
+    </script>
+</body>
+</html>

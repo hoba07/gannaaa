@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أحلى فلانتين ❤️</title>
+    <style>
+        body {
+            text-align: center;
+            background: url('img/backlit-chiemsee-dawn-desktop-backgrounds.jpg') no-repeat center center fixed;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+        }
+        #love-text {
+            color: white;
+            font-size: 2rem;
+            margin-top: 20px;
+        }
+        #love-img {
+            width: 250px;
+            border-radius: 10px;
+            margin: 20px;
+            border: 3px solid white;
+            transition: transform 0.3s ease-in-out;
+        }
+        #love-img:hover {
+            transform: scale(1.1);
+        }
+        #next-btn {
+            background-color: white;
+            color: pink;
+            font-size: 1.2rem;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        #next-btn:hover {
+            background-color: lightgray;
+        }
+        .teddy-container {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+            animation: bounce 1s infinite alternate ease-in-out;
+        }
+        .teddy {
+            width: 120px;
+        }
+        @keyframes bounce {
+            0% { transform: translateX(-50%) translateY(0); }
+            100% { transform: translateX(-50%) translateY(-20px); }
+        }
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="fireworks"></canvas>
+    
+    <h1> يسسسس يابختي بحبك! ❤️</h1>
+
+    <p id="love-text">بحب ضحكتك اللي بتنور الدنيا كلها! 😍</p>
+    <img id="love-img" src="img/photo_2025-02-03_22-53-51.jpg" alt="Jana Smile">
+    <br>
+    <button id="next-btn">عايزة تعرفي بحب فيكي إيه تاني؟</button>
+
+    
+    <div class="teddy-container">
+        <img class="teddy" src="img/bubu-bubu-dudu.gif" alt="Teddy Bear">
+        <img class="teddy" src="img/bubu-dudu-bubu (1).gif" alt="Teddy Bear">
+        <img class="teddy" src="img/dancing-bears-peach-goma-ositos-bailando.gif" alt="Teddy Bear">
+        <img class="teddy" src="img/panda-bear.gif" alt="Teddy Bear">
+    </div>
+
+    <script>
+        // ربط كل صورة بجملتها الخاصة
+        const loveData = [
+            { text: "ضحكتك بحسها عاملة كدا 💖", image: "img/photo_2025-02-03_22-53-51.jpg" },
+            { text: "بصراحه صعب اوي ان بنت تضحكني علشان كدا بحب خفة دمك", image: "img/photo_2025-02-03_22-54-04.jpg" },
+            { text: "بحب انك بتضحكيني بجد", image: "img/photo_2025-02-03_22-54-25.jpg" },
+            { text: "بحب حلاوتك الطبيعية اللي في الصور العبيطة دي", image: "img/photo_2025-02-03_22-53-54.jpg" },
+            { text: "مابالك لما بتحبي تحلوي بقا! 💕", image: "img/photo_2025-02-03_22-54-07.jpg" },
+            { text: "بحب مواساتك ليا في اصعب اوقات حياتي 👩🏻‍🤝‍🧑🏻", image: "img/photo_2025-02-03_22-53-43.jpg" },
+            { text: "بحب تدينك اللي بيحسسني انك فعلا هتبقي زوجة صالحة ليا ولولادي", image: "img/photo_2025-02-03_22-53-58.jpg" },
+            { text: "بحب فرحتك زي الاطفال لما بجبلك اي هدية او حاجة حلوه", image: "img/photo_2025-02-03_22-54-11.jpg" },
+            { text: "مهما كتبت من كلام مش هلحق اوصفلك بحب فيكي قد ايه وعموماً انتي عارفة ياجنة انا بحبك قد ايه", image: "img/photo_2025-02-03_22-54-17.jpg" },
+            { text: "ربنا يخليكي ليا 💞", image: "img/photo_2025-02-04_00-09-06.jpg" },
+        ];
+
+        let index = 0;
+        document.getElementById("next-btn").addEventListener("click", function () {
+            index = (index + 1) % loveData.length;
+            document.getElementById("love-text").innerText = loveData[index].text;
+            document.getElementById("love-img").src = loveData[index].image;
+        });
+
+        // كود الصواريخ
+        const canvas = document.getElementById('fireworks');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        class Firework {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.color = `hsl(${Math.random() * 360}, 100%, 50%)`;
+                this.particles = [];
+                for (let i = 0; i < 30; i++) {
+                    this.particles.push({
+                        x: this.x,
+                        y: this.y,
+                        vx: Math.random() * 4 - 2,
+                        vy: Math.random() * 4 - 2,
+                        alpha: 1
+                    });
+                }
+            }
+            update() {
+                this.particles.forEach(p => {
+                    p.x += p.vx;
+                    p.y += p.vy;
+                    p.alpha -= 0.02;
+                });
+                this.particles = this.particles.filter(p => p.alpha > 0);
+            }
+            draw() {
+                this.particles.forEach(p => {
+                    ctx.fillStyle = this.color;
+                    ctx.globalAlpha = p.alpha;
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, 3, 0, Math.PI * 2);
+                    ctx.fill();
+                });
+                ctx.globalAlpha = 1;
+            }
+        }
+
+        let fireworks = [];
+
+        function createFirework() {
+            fireworks.push(new Firework(Math.random() * canvas.width, Math.random() * canvas.height / 2));
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            fireworks.forEach(firework => {
+                firework.update();
+                firework.draw();
+            });
+            fireworks = fireworks.filter(firework => firework.particles.length > 0);
+            requestAnimationFrame(animate);
+        }
+
+        setInterval(createFirework, 500);
+        animate();
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+    </script>
+</body>
+</html>

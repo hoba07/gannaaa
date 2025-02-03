@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أهم سؤال في حياتك</title>
+    <style>
+        body {
+            text-align: center;
+            background: url('img/backlit-chiemsee-dawn-desktop-backgrounds.jpg') no-repeat center center fixed;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            color: white;
+            font-size: 2rem;
+            margin-top: 50px;
+        }
+        input {
+            font-size: 1.2rem;
+            padding: 10px;
+            margin-top: 20px;
+            border-radius: 10px;
+            border: none;
+            text-align: center;
+        }
+        .hidden {
+            display: none;
+        }
+        button {
+            font-size: 1.5rem;
+            padding: 10px 20px;
+            margin-top: 20px;
+            border: none;
+            border-radius: 10px;
+            background-color: red;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>بما إن عندي كذا صديقة، لو سمحتي اكتبي اسمك عشان البرنامج يشتغل!</h1>
+    <input type="text" id="nameInput" placeholder="اكتبي اسمك هنا">
+    <p id="message" class="hidden">إنتي عبيطة ولا إيه يا جنه؟ معنديش غيرك! ❤️</p>
+    <button id="continueBtn" class="hidden" onclick="nextPage()">كملي</button>
+
+    <script>
+        document.getElementById("nameInput").addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                document.getElementById("message").classList.remove("hidden");
+                document.getElementById("continueBtn").classList.remove("hidden");
+            }
+        });
+
+        function nextPage() {
+            window.location.href = "question.html";
+        }
+    </script>
+</body>
+</html>
